@@ -85,7 +85,7 @@ namespace API.Controllers
 
                 var nearestLocations = await context.TrashBins
                      .Where(l => l.Latitude != null && l.Longitude != null)
-                     .Include(l => l.Feedbacks)
+                     .Include(l => l.Feedbacks.OrderByDescending(x=> x.CreatedDate))
                      .Select(l => new
                      {
                          Location = l,

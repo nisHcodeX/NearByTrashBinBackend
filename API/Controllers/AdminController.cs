@@ -39,7 +39,7 @@ namespace API.Controllers
         {
             try
             {
-                var bins = await _context.TrashBins.Include(x => x.Feedbacks).ToListAsync();
+                var bins = await _context.TrashBins.Include(x => x.Feedbacks.OrderByDescending(x => x.CreatedDate)).OrderByDescending(x => x.CreatedDate).ToListAsync();
                 return Ok(bins);
             }
             catch (Exception)
